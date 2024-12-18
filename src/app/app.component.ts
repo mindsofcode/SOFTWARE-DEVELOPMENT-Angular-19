@@ -1,29 +1,26 @@
-import {Component, computed, signal} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from "@angular/common";
+import {resolve} from "node:path";
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true
 })
 export class AppComponent {
-  title = 'hello-world';
+  value: string = 'case1'; // Current switch case value
+  items: any[] = [{name: 'item1'}, {name: 'item2'}, {name: 'item3'}];
 
 
-  quantity = signal(1);
-  unitPrice = signal(12);
 
-  totalPrice = computed(() => this.quantity() * this.unitPrice());
 
-  changeQuantity(amount: number) {
-    this.quantity.update(qty => qty + amount);
-  }
 
-  changePrice(amount: number) {
-    this.unitPrice.update(price => price + amount);
+
+  async loadComponent() {
+    await new Promise(resolve => setTimeout(resolve, 2000));
   }
 }

@@ -1,24 +1,73 @@
 <div>
-  <h1>Price Calculator</h1>
 
-  <div>
-    <label>Quantity: </label>
-    <span>{{ quantity() }}</span>
-    <br />
-    <button (click)="changeQuantity(1)">Increase Quantity</button>
-    <button (click)="changeQuantity(-1)">Decrease Quantity</button>
-  </div>
+    <h1>Angular New Syntaxes vs Old Syntaxes</h1>
 
-  <div>
-    <label>Unit Price: </label>
-    <span>{{ unitPrice() }}</span>
-    <br />
-    <button (click)="changePrice(1)">Increase Price</button>
-    <button (click)="changePrice(-1)">Decrease Price</button>
-  </div>
+    <h5>Old If Statement</h5>
+    @let oldCondition = false;
 
-  <div>
-    <h2>Total Price: </h2>
-    <span>{{ totalPrice() }}</span>
-  </div>
+    <ng-container *ngIf="oldCondition; else alt">
+        Old Angular If Condition
+    </ng-container>
+    <ng-template #alt>
+        Old Angular Alternative Statement
+    </ng-template>
+
+    <h5>New If Statement</h5>
+    @let newCondition = true;
+    @if (newCondition) {
+        <div>
+            New Angular If Condition
+        </div>
+    } @else {
+        <label>New Angular Else Condition</label>
+    }
+    <hr/>
+
+    <h5>Old For Loop</h5>
+    <div *ngFor="let item of items">
+        <p>{{ item.name }}</p>
+    </div>
+
+    <h5>New For Loop</h5>
+    @for (item of items; track item.name) {
+        <li>{{ item.name }}</li>
+    } @empty {
+        <li>There are no items.</li>
+    }
+    <hr/>
+
+    <h5>Old Switch Case</h5>
+    <div [ngSwitch]="value">
+        <div *ngSwitchCase="'case1'">Old Angular Case 1</div>
+        <div *ngSwitchCase="'case2'">Old Angular Case 2</div>
+        <div *ngSwitchDefault>Old Angular Default Case</div>
+    </div>
+
+    <h5>New Switch Case</h5>
+    @switch (value) {
+        @case ('case1') {
+            <div>New Angular Case 1</div>
+        }
+        @case ('case2') {
+            <div>New Angular Case 2</div>
+        }
+        @default {
+            <div>New Angular Default Case</div>
+        }
+    }
+    <hr/>
+
+    <h5>Angular defer </h5>
+    @defer (on timer(3s)) {
+        Large component
+    }  @error {
+        Failed to load content
+    } @loading    (minimum 3s)  {
+        <p>Loading content...</p>
+    } @placeholder {
+        Placeholder
+    }
+
+    <div>
+    </div>
 </div>
